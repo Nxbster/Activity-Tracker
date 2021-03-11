@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ben Phillips and Read Schlomer">
+  <meta name="description" content="Activity Log screen for the activity tracker webapp">  
+  
+  <title>Activity Log</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+       
+</head>
+
+<body>
+    <h1> Akbar's Activity Log </h1>
+    <h2> Hello Akbar! What have you done today? </h2>
+
+    <form action="activity_log.html">
+        <label for="activity">Activity: </label>
+        <select name="activity" id="activity" required>
+            <option disabled selected value> -- select an activity -- </option>
+            <option value="swimming">Swimming</option>
+            <option value="biking">Biking</option>
+            <option value="walking">Walking</option>
+        </select>
+
+
+        <label for="activity-date">Date:</label>
+        <input type="date" id="activity-date" name="activity-date" required> 
+        
+        <label for="activity-time">Time: </label>
+        <input type="time" id="activity-time" name="activity-time" required ></br>
+
+
+        <label for="activity-time-spend">Time Spent: </label>
+        <input type="text" id="activity-time-spent" name="activity-time-spent" required><br>
+
+        <label for="activity-distance">Distance: </label>
+        <input type="text" id="activity-distance" name="activity-distance" required><br>
+
+        <label for="activity-comments">Comments: </label>
+        <textarea name="activity-comments" rows="4" cols="50"></textarea>
+
+        <input type="submit" value="Submit"></form></br>
+    </form>
+
+
+    <h4>Recent Workouts: </h4>
+    <table id="workout-table" class="table" >
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Activity</th>
+            <th>Distance</th>
+            <th>Calories Burned &nbsp;&nbsp;</th>
+          </tr> 
+        </thead>
+        <tbody>
+            <tr>
+                <td>2/12/21</td>
+                <td>3:30pm</td>
+                <td>Running</td>
+                <td>2.3 miles</td>
+                <td>500 calories</td>
+            </tr>
+            <tr>
+                <td>2/22/21</td>
+                <td>1:30pm</td>
+                <td>Swimming</td>
+                <td>1.2 miles</td>
+                <td>393 calories</td>
+            </tr>
+        </tbody>
+
+</body>
