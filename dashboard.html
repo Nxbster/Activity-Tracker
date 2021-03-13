@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html lang = "en">
-<header>
-    <meta name="author" content="Read Schlomer">
+<head>
+    <meta name="author" content="Read Schlomer, Ben Phillips">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-</header>
-    <head>
+    <meta name="description" content="Dashboard">
+    <link rel='stylesheet' type= "text/css" href='./styles/stylesheet.css'>
     <title>Akbar's Dashboard</title>
 </head>
     <body>
         
-        <h1>Welcome Akbar</h1>
-        <h2>Read Schlomer</h2>
-        <p>Let's design your web page</p>
-
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-mid" src="https://farm9.staticflickr.com/8521/8472499482_d3edba87d9_z.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h1>Akbar's Dashboard</h1>
+        
+        <div class="card mb-3">
+            <p style="float: right;"><img src="https://farm9.staticflickr.com/8521/8472499482_d3edba87d9_z.jpg" height= 30% width= 30% border="1px"></p>
+            <label for="height">Height(inches): </label>
+            <input type="text" value= "54" id="height" name="height" required><br>
+            <label for="weight">Weight(lbs): </label>
+            <input type="text" value = '120' id="weight" name="weight" required><br>
+            <label for="quote">Quote: </label>
+            <input type="text" value= "It's a trap!!!" id="quote" name="quote" required><br>
+        </div>
+        
+        <div class="card-group">
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Activities</h5>
+                <p class="card-text">Akbar has burned a total of 1238 calories!</p>
+                <p class="card-text">Akbar has run for 13 consecutvie days!</p>
+                <p class="card-text">Akbar's favorite activity is Swimming.</p>
+                
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Meals</h5>
+                <p class="card-text">Akbar has eaten a total of 1523 calories today!</p>
+                <p class="card-text">Akbar has eaten 250 grams of sugar this week.</p>
+                <p class="card-text">Akbar's favorite meal is breakfast!</p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Fun Stats</h5>
+                <p class="card-text">Akbar is on a 4 day workout streak.</p>
+                <p class="card-text">Akbar has consumed 5 sodas worth of sugar.</p>
+                <p class="card-text">Akbar has eaten 285 more calories than they have burned!</p>
+              </div>
             </div>
           </div>
     </body>
 </html>
 
 
-<!--When you sign in  -->

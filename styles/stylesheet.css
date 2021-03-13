@@ -1,4 +1,10 @@
-dash_img {
-    width: 50%;
-    height: auto;
+.dash_img {
+    width: 10% !important;
+    height: auto !important;
 }
+
+.dash {
+    min-width: 550px;
+    font-family: 30px 'Courier New', monospace;
+    position: relative;
+    }
