@@ -11,11 +11,20 @@
        
 </head>
 
-<body>
+<script>
+  //Set user's focus to the activity selection dropdown upon loading the page
+  function focusActivity() {
+     	document.activityInput.activity.focus();   	 
+     }
+</script>
+
+
+
+<body onload="focusActivity()">
     <h1> Akbar's Activity Log </h1>
     <h2> Hello Akbar! What have you done today? </h2>
 
-    <form action="activity_log.html">
+    <form name="activityInput">
         <label for="activity">Activity: </label>
         <select name="activity" id="activity" required>
             <option disabled selected value> -- select an activity -- </option>
@@ -29,19 +38,19 @@
         <input type="date" id="activity-date" name="activity-date" required> 
         
         <label for="activity-time">Time: </label>
-        <input type="time" id="activity-time" name="activity-time" required ></br>
+        <input type="time" id="activity-time" name="activity-time" required></br>
 
 
-        <label for="activity-time-spend">Time Spent: </label>
+        <label for="activity-time-spent">Time Spent: </label>
         <input type="text" id="activity-time-spent" name="activity-time-spent" placeholder="Minutes" required><br>
 
         <label for="activity-distance">Distance: </label>
         <input type="text" id="activity-distance" name="activity-distance" placeholder="Miles" required><br>
 
         <label for="activity-comments">Comments: </label>
-        <textarea name="activity-comments" rows="4" cols="50" placeholder="How was your activity?"></textarea>
+        <textarea name="activity-comments" id="activity-comments" rows="4" cols="50" placeholder="How was your activity?"></textarea>
 
-        <input type="submit" value="Submit"></form></br>
+        <input type="button" value="Submit" onClick="validateInputTypes(); return logActivity()"></br>
     </form>
 
 
@@ -58,14 +67,14 @@
         </thead>
         <tbody>
             <tr>
-                <td>2/12/21</td>
+                <td>2021-02-03</td>
                 <td>3:30pm</td>
                 <td>Running</td>
                 <td>2.3 miles</td>
                 <td>500 calories</td>
             </tr>
             <tr>
-                <td>2/22/21</td>
+                <td>2021-02-04</td>
                 <td>1:30pm</td>
                 <td>Swimming</td>
                 <td>1.2 miles</td>
@@ -75,36 +84,89 @@
 
       </table>  
 
-        <div class="card-group">
-          <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
-
-
         <script>
-          
+
+          //Code to validate types of Time Spent and Distance input fields
+          function isInt(str){
+            var val = parseInt(str);
+            return (val > 0);
+          }
+
+          function validateInputTypes(){
+
+            var timeSpent = document.getElementById("activity-time-spent");
+            if (!isInt(timeSpent.value)){
+              alert("Time Spent must be inputted as an integer");
+              //Delete improper input in Time Spent and Distance fields
+              document.getElementById("activity-time-spent").value = "";
+              document.getElementById("activity-distance").value = "";
+              return false;
+            } 
+
+            var distance = document.getElementById("activity-distance")
+            if (!isInt(distance.value)){
+              alert("Distance must be inputted as an integer");
+              //Delete improper input in Time Spent and Distance fields
+              document.getElementById("activity-time-spent").value = "";
+              document.getElementById("activity-distance").value = "";
+              return false;
+            }               
+          }
+
+          console.log("hello!");
+
+          //Code to add inputted data to below summary table
+          function logActivity() {
+            var date = document.getElementById("activity-date");
+            console.log(date);
+            var time = document.getElementById("activity-time");
+            var timeFormat = "";
+            if (time.value.charAt(0) == '0'){
+              timeFormat = time.value.slice(1);
+            }
+            else{
+              timeFormat = time.value;
+            }
+            var activity = document.getElementById("activity");
+            //Uppercase the activity
+            var activityUppercase = activity.value.charAt(0).toUpperCase() + activity.value.slice(1);
+            var distance = document.getElementById("activity-distance");
+            var timeSpent = document.getElementById("activity-time-spent");
+            var comments = document.getElementById("activity-comments");
+            
+            var activityData = [date.value, timeFormat + "pm", activityUppercase, distance.value + " miles", "512 calories"];
+            var tableRef = document.getElementById("workout-table");
+            var newRow = tableRef.insertRow(tableRef.rows.length);
+
+            //Do not insert if values are null
+            if(date.value == "" || time.value == "" || activity.value == "" || distance.value == "" || timeSpent.value == ""){
+              return;
+            }
+
+            //Do not insert if Time Spent and Distance are not Integers
+            if(isInt(distance.value) == false || isInt(timeSpent.value) == false){
+              return;
+            }
+
+            var newCell = "";       
+            var i = 0;         
+            // Use insertCell(index) method to insert new cells (<td> elements) at the 1st, 2nd, 3rd position of the new <tr> element        	      
+            while (i < 5)
+            {
+              newCell = newRow.insertCell(i);            
+              newCell.innerHTML = activityData[i];    
+              newCell.onmouseover = this.rowIndex; 
+              i++;
+            }
+
+            //Clear input fields after submission
+            document.getElementById("activity-date").value = "";
+            document.getElementById("activity-time").value = "";
+            document.getElementById("activity").value = "";
+            document.getElementById("activity-time-spent").value = "";
+            document.getElementById("activity-distance").value = "";
+            document.getElementById("activity-comments").value = "";
+          }
         </script>  
 
 </body>

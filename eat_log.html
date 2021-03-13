@@ -15,7 +15,7 @@
     <h1> Akbar's Eating Log </h1>
     <h2> Hello Akbar! What have you eaten today? </h2>
 
-    <form action="eat_log.html">
+    <form action="eat_log.html" onsubmit="return validateInputTypes()">
         <label for="meal">Meal: </label>
         <select name="meal" id="meal" required>
             <option disabled selected value> -- select an activity -- </option>
@@ -36,10 +36,10 @@
         <input type="text" id="eat-calories" name="eat-calories" required><br>
 
         <label for="eat-sugar">Sugar: </label>
-        <input type="text" id="eat-sugar" name="eat-sugar" required><br>
+        <input type="text" id="eat-sugar" name="eat-sugar" placeholder="Grams" required><br>
 
         <label for="activity-comments">Comments: </label>
-        <textarea name="activity-comments" rows="4" cols="50"></textarea>
+        <textarea name="activity-comments" rows="4" cols="50" placeholder="How was your meal?"></textarea>
 
         <input type="submit" value="Submit"></form></br>
     </form>
@@ -75,5 +75,27 @@
                 <th>Turkey Sandwich w/ Chips &nbsp;&nbsp;</th>
             </tr>
         </tbody>
+
+        <script>
+          function isInt(str){
+            var val = parseInt(str);
+            return (val > 0);
+          }
+
+          function validateInputTypes(){
+
+            var calories = document.getElementById("eat-calories");
+            if (!isInt(calories.value)){
+              alert("Calories must be inputted as an integer")
+              return false
+            } 
+
+            var sugar = document.getElementById("eat-sugar")
+            if (!isInt(sugar.value)){
+              alert("Grams of sugar must be inputted as an integer")
+              return false
+            }               
+          }
+        </script>  
 
 </body>
