@@ -13,13 +13,18 @@
     <h1>Akbar's Dashboard</h1>
 </header>
     <body>
-        
+        <script>
+          window.addEventListener('load', (event) => {
+            document.getElementById("quote").focus();
+          });
+
+        </script>
         
         <div class = "card-group">
         <div class = "card">
             <img src="https://farm9.staticflickr.com/8521/8472499482_d3edba87d9_z.jpg" class = "dashImg, img-center">
         </div>
-        <div class = "card">
+        <div class = "card" name = "bio">
             <label for="height">Height(inches): </label>
             <input type="text" value= "54" id="height" name="height" required><br>
             <label for="weight">Weight(lbs): </label>
