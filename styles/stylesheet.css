@@ -107,6 +107,21 @@ body {
     border: "1px";
 
   }
+  .hideClass{
+    display: none;
+  }
+  div:hover .pquote {
+    display:block;
+  }
+
+  .hide {
+    display: none;
+  }
+  
+  .myDIV:hover + .hide {
+    display: block;
+    color: red;
+  }
   
   /*--- adjust to make the page look better on small screens ---*/
   
