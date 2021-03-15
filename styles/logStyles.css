@@ -1,0 +1,70 @@
+/* Puts nice rounded borders on textareas  */
+textarea {
+    resize: vertical;
+    padding:15px;
+    margin-left: 100px;
+    border-radius:15px;
+    border:0;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    height:150px;
+  }
+
+
+  select {
+    resize: vertical;
+    border-radius:5px;
+    border:0;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  }
+
+  input[type="date"] {
+
+    resize: vertical;
+    border-radius:5px;
+    border:0;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  } 
+
+  input[type="time"] {
+    resize: vertical;
+    border-radius:5px;
+    border:0;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  }
+  
+  input[type="text"] {
+    resize: vertical;
+    border-radius:5px;
+    border:0;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  }
+
+  .form-input{
+    padding-left: 57px;
+  }
+
+  .page-subheading{
+    padding-left: 50px;
+  }
+
+  .distance-input{
+    margin-left: 20px;
+  }
+
+  table{
+      color:white;
+  }
+
+  body {
+    color:white;
+    background-image: url(../images/runner2.jpg);
+    background-size: 100% auto;
+  }
+
+  footer{
+      color:white;
+      position: fixed;
+      bottom: 0;
+  }
+
+ 

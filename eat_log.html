@@ -12,7 +12,16 @@
 </head>
 
 <body>
-    <h1> Akbar's Eating Log </h1>
+    <!--Header inspired by: view-source:https://getbootstrap.com/docs/4.1/examples/pricing/-->
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-bold">Akbar's Eating Log</h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="eat_log.html">Eating Log</a>
+        <a class="p-2 text-dark" href="activity_log.html">Activity Log</a>
+        <a class="p-2 text-dark" href="dashboard.html">Dashboard</a>
+      </nav>
+      <a class="btn btn-outline-primary" href="#">Log out</a>
+    </div>
     <h2> Hello Akbar! What have you eaten today? </h2>
 
     <form action="eat_log.html" onsubmit="return validateInputTypes()">
@@ -75,8 +84,20 @@
                 <th>Turkey Sandwich w/ Chips &nbsp;&nbsp;</th>
             </tr>
         </tbody>
+      </table>  
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+          <p class="mb-1">&copy; 2021 Ben Phillips and Read Schlomer</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+        </footer>
 
         <script>
+
+          //Code to validate types of Calories and Sugar input fields
           function isInt(str){
             var val = parseInt(str);
             return (val > 0);
