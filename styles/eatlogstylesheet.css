@@ -18,7 +18,6 @@ textarea {
   }
 
   input[type="date"] {
-
     resize: vertical;
     border-radius:5px;
     border:0;
@@ -67,11 +66,10 @@ textarea {
   }
 
   footer{
-
-      position: fixed;
-      bottom: 0;
+    position: fixed;
+    bottom: 0;
   }
 
-  tb {
-      font-weight:normal;
+  tb{
+    font-weight:normal;
   }
