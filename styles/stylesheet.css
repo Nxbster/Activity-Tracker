@@ -1,10 +1,138 @@
-.dash_img {
-    width: 10% !important;
-    height: auto !important;
-}
+/*Stylesheet adapted from Upsorn Praphamontripong*/
 
-.dash {
-    min-width: 550px;
-    font-family: 30px 'Courier New', monospace;
+body {
+    padding: 0;
+    margin: 0;
+    background: #fefdf8;   /* FloralWhite; ghostwhite; */
+  }
+  
+  /*--- navigation bar ---*/
+  
+  .navbar {
+    background: #330099;
+  }
+  
+  .nav-link,
+  .navbar-brand {
+    color: white;
+  }
+  
+  .nav-link {
+    margin-right: 1em;
+  }
+  
+  .nav-link:hover {
+    color: black;
+  }
+  
+  .navbar-collapse {
+    justify-content: flex-end;
+  }
+  
+  /*--- header portion ---*/
+  
+  .header {
+    /* background-image: url("images/rice-hall.jpg");  */
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;  
+    font-family: fantasy, Impact, sans-serif;
+  }
+  
+  /* add an overlay to the background image */
+  .overlay {
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0; 
+    top: 0;
+    
+    /* background: rgba(0, 0, 255, 0.3);  blue with opacity */ 
+    /* background: rgba(120, 255, 255, 0.6);  */
+    background: rgba(200, 244, 244, 0.8);
+  }
+  
+  .description {
+    position: absolute;	
+    left: 50%;  
+    top: 50%;             
+    
+    /* define how much the element moves in each direction */
+    transform: translate(-50%, -55%);   
+    /* transform: translateY(50%); */   
+    /* transform: translate(0%, 50%);  */    /* translate(x, y) */                
+    /* transform: translateY(0.5em); */      /* related to font-size of the element */
+    
+    text-align: center;
+  }
+  
+  .description h1 {
+    color: #000099;
+    font-weight: bold;
+  }
+  
+  .description p {
+    color: #003366;
+    font-size: 1.1rem;      /* rem -- relative to the root font size */
+  }
+  
+  /*--- content portion ---*/
+  
+  .highlight {  
+    margin: 2em auto;
+    padding: 1em;
     position: relative;
+  }
+  
+  /*--- footer portion ---*/
+  
+  .page-footer {
+    background-color: #333333;
+    color: #ccc;
+    padding: 40px 0px 20px 0px; 
+  }
+   
+  .footer-copyright {
+    color: #666;
+    padding: 20px;
+  }
+/*---- Read additions    ----*/
+
+  .img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dashImg {
+    height: 100%; 
+    width: 50%; 
+    border: "1px";
+
+  }
+  .hideClass{
+    display: none;
+  }
+  div:hover .pquote {
+    display:block;
+  }
+
+  .hide {
+    display: none;
+  }
+  
+  .myDIV:hover + .hide {
+    display: block;
+    color: red;
+  }
+  
+  /*--- adjust to make the page look better on small screens ---*/
+  
+  @media only screen and (max-width: 768px) {
+    h1 {
+       line-height: 1.1em;
+    } 
+    .description p {
+       font-size: 1rem;
+       line-height: 1em;
     }
+  }

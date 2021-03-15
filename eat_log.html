@@ -12,6 +12,10 @@
 
   <!--Styling Rules in the HTML doc-->
   <style>
+    tbody{
+      color: #db0030;
+    }
+
     tbody:hover{
       color:orangered;
     }
@@ -32,6 +36,8 @@
     </div>
     <h2 class="page-subheading"> Hello Akbar! &nbsp; What have you eaten today? </h2> </br>
 
+
+    <!--Form input for a meal-->
     <form class="form-input" name="activityInput">
       <div class="form-group">
           <label for="meal">Meal: &nbsp;&nbsp;</label>
@@ -68,12 +74,13 @@
         </div>
 
         <label for="eat-comments">Comments: </label> </br>
-        <textarea name="eat-comments" id="eat-comments" rows="4" cols="50" placeholder="How was your meal?" required></textarea>
+        <textarea name="eat-comments" id="eat-comments" rows="4" cols="50" placeholder="What did you eat?" required></textarea>
 
         <input type="button" value="Submit" class="btn btn-secondary" id="input-button"></br></br></br>
     </form>
 
 
+    <!--Table for recording meal inputs: hard coded first two values for appearance-->
     <div>
       <h4 style="display:inline;padding-left: 20px;">&nbsp;&nbsp;Recent Meals: </h4>  &nbsp;&nbsp;
         <input type="button" class="btn btn-secondary btn-md" value=" Show Table " id="show-button" title="click to show table">  &nbsp;&nbsp; 
@@ -111,6 +118,7 @@
         </tbody>
       </table>  
 
+      <!--Footer with names-->
       <footer>
         <p>&copy; 2021 Ben Phillips and Read Schlomer</p>
       </footer>
@@ -212,6 +220,7 @@
           document.getElementById("show-button").addEventListener("click", showTable);
           document.getElementById("hide-button").addEventListener("click", hideTable);
 
+          document.addEventListener("load", alert("Welcome back Akbar!"))
 
 
 
