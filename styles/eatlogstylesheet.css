@@ -1,15 +1,16 @@
-/* Puts nice rounded borders on textareas  */
+/* So textarea looks modern: rounded edges, no border, shadow, etc.  */
+/* Textarea styling (and other input styling) based upon https://blog.logrocket.com/how-to-style-forms-with-css-a-beginners-guide/*/
 textarea {
     resize: vertical;
     padding:15px;
     margin-left: 100px;
-    border-radius:15px;
+    border-radius:14px;
     border:0;
     box-shadow:4px 4px 10px rgba(0,0,0,0.06);
     height:150px;
   }
 
-
+  /* Changing style of other input fields to match textarea */
   select {
     resize: vertical;
     border-radius:5px;
@@ -38,6 +39,7 @@ textarea {
     box-shadow:4px 4px 10px rgba(0,0,0,0.06);
   }
 
+  /* manipulating inputs to line up together */
   .form-input{
     padding-left: 57px;
   }
@@ -54,22 +56,20 @@ textarea {
     margin-left: 52px;
   }
 
+  /* Change table text color */
   table{
       color:black;
       padding: 100px;
   }
 
+  /* Add cool background image */
   body {
-
     background-image: url(../images/food2.jpg);
     background-size: 100% auto;
   }
 
+  /* Fix footer at bottom of page */
   footer{
     position: fixed;
     bottom: 0;
-  }
-
-  tb{
-    font-weight:normal;
   }

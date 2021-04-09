@@ -12,10 +12,12 @@
 
   <!--Styling Rules in the HTML doc-->
   <style>
+    /* change table body text color to black*/
     tbody {
       color:white;
     }
 
+    /* change table body text color to orangered on hover*/
     tbody:hover{
       color: #db0030;
     }
@@ -64,9 +66,11 @@
         <input type="time" id="activity-time" name="activity-time" required></br>
       </div>
 
+
         <div class="input-group input-group-sm mb-3">
           <label for="activity-time-spent">Time Spent: &nbsp;&nbsp;</label>
           <input type="text" id="activity-time-spent" name="activity-time-spent" required><br>
+          <!--Code with help from : https://getbootstrap.com/docs/4.0/components/input-group/-->
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">minutes</span>
           </div>
@@ -75,6 +79,7 @@
         <div class="input-group input-group-sm mb-3">
           <label for="activity-distance">Distance: &nbsp;&nbsp;</label>
           <input type="text" class="distance-input" id="activity-distance" name="activity-distance" required><br>
+          <!--Code with help from : https://getbootstrap.com/docs/4.0/components/input-group/-->
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2" >miles</span>
           </div>
@@ -86,6 +91,8 @@
         <input type="button" value="Submit" class="btn btn-secondary" id="input-button" ></br></br></br>
     </form>
 
+
+  <!--Table for recording meal inputs: hard coded first two values for appearance-->
   </br>
     <div>
       <h4 style="display:inline;padding-left: 20px;">&nbsp;&nbsp;Recent Workouts: </h4>  &nbsp;&nbsp;
@@ -129,6 +136,12 @@
 
         <script>
 
+          //Code for welcome message using anonymous function
+          var welcomeUser = (function(){
+            document.addEventListener("load", alert("Welcome back Akbar!"));
+          }());
+
+          //Inspired by an example from Upsorn Praphamontripong: http://www.cs.virginia.edu/~up3f/cs4640/examples/js/form-enhancement/template/validate-int.html
           //Code to validate types of Time Spent and Distance input fields
           function isInt(str){
             var val = parseInt(str);
@@ -158,6 +171,7 @@
 
 
           //Code to add inputted data to below summary table
+          //Inspired by an example from Upsorn Praphamontripong: http://www.cs.virginia.edu/~up3f/cs4640/examples/js/add-rows-to-table.html
           function logActivity() {
             var date = document.getElementById("activity-date");
             console.log(date);
@@ -201,7 +215,7 @@
               i++;
             }
 
-            //Clear input fields after submission
+            //Clear input fields after succesfull submission
             document.getElementById("activity-date").value = "";
             document.getElementById("activity-time").value = "";
             document.getElementById("activity").value = "";
@@ -226,14 +240,5 @@
           document.getElementById("show-button").addEventListener("click", showTable);
           document.getElementById("hide-button").addEventListener("click", hideTable);
 
-
-
-          //Code for welcome message using arrow function
-          document.addEventListener("load", alert("Welcome back Akbar!"))
-        
-
-
         </script>  
-
-
 </body>

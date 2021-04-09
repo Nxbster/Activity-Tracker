@@ -12,13 +12,22 @@
 
   <!--Styling Rules in the HTML doc-->
   <style>
+    /* change table body text color to black*/
     tbody{
-      color: #db0030;
+      color: black;
     }
 
+    /* change table body text color to orangered on hover*/
     tbody:hover{
       color:orangered;
     }
+
+    /* Change color of last column to white (works in inputted tables as well) */
+    table td:nth-child(6)
+    {
+      color:white;
+    }
+
   </style>
 
 </head>
@@ -124,7 +133,13 @@
       </footer>
 
         <script>
+        
+          //Code for welcome message using anonymous function
+          var welcomeUser = (function(){
+            document.addEventListener("load", alert("Welcome back Akbar!"));
+          }());
 
+          //Inspired by an example from Upsorn Praphamontripong: http://www.cs.virginia.edu/~up3f/cs4640/examples/js/form-enhancement/template/validate-int.html
           //Code to validate types of Calories and Sugar input fields
           function isInt(str){
             var val = parseInt(str);
@@ -132,7 +147,6 @@
           }
 
           function validateInputTypes(){
-
             //Validate input on the calories and sugar text fields
             var calories = document.getElementById("eat-calories");
             if (!isInt(calories.value)){
@@ -153,7 +167,8 @@
             } 
           }
 
-            //Code to add inputted data to below summary table
+          //Code to add inputted data to below summary table, anonymous function
+          //Inspired by an example from Upsorn Praphamontripong: http://www.cs.virginia.edu/~up3f/cs4640/examples/js/add-rows-to-table.html
           var logMeal = function() {
             var date = document.getElementById("eat-date");
             var time = document.getElementById("eat-time");
@@ -219,9 +234,6 @@
           document.getElementById("input-button").addEventListener("click", logMeal);
           document.getElementById("show-button").addEventListener("click", showTable);
           document.getElementById("hide-button").addEventListener("click", hideTable);
-
-          document.addEventListener("load", alert("Welcome back Akbar!"))
-
 
 
         </script>  
