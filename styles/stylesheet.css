@@ -119,7 +119,7 @@ body {
   .hide {
     display: none;
   }
-  
+
   .myDIV:hover + .hide {
     display: block;
     color: red;
