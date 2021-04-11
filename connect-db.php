@@ -14,17 +14,17 @@
 //        Thus, specify the correct database name
 
 // hostname
-//$hostname = 'usersrv01.cs.virginia.edu';
-$hostname = 'localhost:3306';
+$hostname = 'usersrv01.cs.virginia.edu';
+//$hostname = 'localhost:3306';
 //$hostname = '128.143.69.130';
 
 // database name
-//$dbname = 'bnp3nj';
-$dbname = 'BenP';
+$dbname = 'bnp3nj';
+//$dbname = 'BenP';
 
 // database credentials
-//$username = 'bnp3nj';
-$username = 'BenP';
+$username = 'bnp3nj';
+//$username = 'BenP';
 $password = '@Sarah524';
 
 // DSN (Data Source Name) specifies the host computer for the MySQL database 
