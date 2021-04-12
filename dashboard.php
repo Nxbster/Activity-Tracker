@@ -91,6 +91,9 @@
     </div>
     <div class = "card" name = "bio">
       <form action="" method="get">
+      <?php //Read
+      echo "Log in time: " . $_GET['time'] . "<br/>";
+      ?>
         <label for="height">Height(inches): </label>
         <input type="text" value= "<?php echo $db_Height;?>" id="height" name="height"><br>
         <span class="msg" style="color:red">

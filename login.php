@@ -12,6 +12,7 @@
 </head>
 
 <?php session_start(); require('connect-db.php');?>
+
   <div class="container">
     <h1>Welcome Back to Activity Tracker!</h1>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
@@ -22,8 +23,12 @@
   </div>
 
 <?php 
+  
   $password_warning = NULL;
   function login_and_authenticate(){
+    //Read
+    global $time_logged_in;
+    date_default_timezone_set('US/Eastern');
     if($_SERVER['REQUEST_METHOD'] == 'POST' && strlen($_POST['username']) > 0)
     {
       global $db;
@@ -39,7 +44,9 @@
           echo $row['User'] . ' . ' . $row['Password'];
           if ($_POST['username'] == $row['User'] && $_POST['pwd'] == $row['Password']){
             $_SESSION['user'] = $_POST['username'];
-            header('Location: dashboard.php');
+            //Read
+            $time_logged_in = date("h:i:s",time());
+            header('Location: dashboard.php' . "?time=$time_logged_in");
           }
           else{
             echo "Wrong password!";
@@ -54,7 +61,9 @@
         $statement->execute();
         $statement->closeCursor();
         $_SESSION['user'] = $_POST['username'];
-        header('Location: dashboard.php');
+        //Read
+        $time_logged_in = date('h:i:s',time());
+        header('Location: dashboard.php'. "?time=$time_logged_in");
       }
     }
 
