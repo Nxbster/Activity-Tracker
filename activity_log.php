@@ -70,9 +70,7 @@
   <h2 class="page-subheading"> Hello <?php echo $_SESSION['user'] ?>! &nbsp; What have you done today? </h2></br>
   
 <?php
-
-  function insertData()
-{   
+  function insertData() {   
 	global $db;
     $reminder_message = NULL;
     $user = htmlspecialchars($_SESSION['user']);
@@ -142,7 +140,6 @@
 
     //clear $_POST array
     $_POST = array();  
-
 }
 
 if (isset( $_POST['form-submit'] )){
