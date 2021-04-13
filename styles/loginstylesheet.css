@@ -1,0 +1,17 @@
+body {
+    background-image: url(../images/login.jpg);
+    background-size: 100% auto;
+  }
+
+.login-chunk{
+    background-color: white;
+    /* With Help from: https://stackoverflow.com/questions/14123999/center-a-div-horizontally-and-vertically*/
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding:50px;
+    border-radius:10px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+}

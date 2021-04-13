@@ -34,12 +34,14 @@
 
 <body>
 <?php session_start(); ?>
+<!--In order to keep people who haven't logged in out-->
 <?php if (isset($_SESSION['user']))
 {
 ?>
 <?php require('connect-db.php'); ?>
 
 <?php 
+  //Function that Queries the database and returns 5 most recent meals
   function query_database(){
 
     global $db;
@@ -57,6 +59,7 @@
     foreach ($output as $row){
       if ($count < 5)
       {
+        //Puts each entry into the table format for display
         ?><tr>
             <td><?php echo $row['Date']; ?></td>
             <td><?php echo $row['Time']; ?>pm</td>
@@ -74,6 +77,7 @@
 ?>
 
 <?php
+  //Function that takes inputted meal data and inserts it into the Eat_Log table
   function insertData()
 {   
 	global $db;
@@ -85,43 +89,47 @@
       $meal = htmlspecialchars($_POST['meal']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      return;
     }  
     if ($_POST['eat-date'] != NULL) {
       $date = htmlspecialchars($_POST['eat-date']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      return;
     }
     if ($_POST['eat-time'] != NULL) {
       $time = htmlspecialchars($_POST['eat-time']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      return;
     }  
-    if ($_POST['eat-calories'] != NULL) {
+    if ($_POST['eat-calories'] != NULL && is_numeric($_POST['eat-calories'])) {
       $calories = htmlspecialchars($_POST['eat-calories']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      //Throws user a message if they haven't inputted Calories as a string
+      setcookie('calories_message', "Please fill out Calories with an integer!", time()+3600);
+      return;
     }
-    if ($_POST['eat-sugar'] != NULL) {
+    if ($_POST['eat-sugar'] != NULL && is_numeric($_POST['eat-sugar'])) {
       $sugar = htmlspecialchars($_POST['eat-sugar']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      //Throws user a message if they haven't inputted Sugar as a string
+      setcookie('sugar_message', "Please fill out sugar with an integer!", time()+3600);
+      return;
     }
     if ($_POST['eat-comments'] != NULL) {
       $comments = htmlspecialchars($_POST['eat-comments']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      return;
     }
 
     $query = "INSERT INTO Eat_Log (User, Meal, Date, Time, Calories, Sugar, Comments) VALUES (:user, :meal, :date, :time, :calories, :sugar, :comments);";
 
     $statement = $db->prepare($query); //Compile string query into executable version
-    
+    //Bind the parameters from $_POST so they can be put into the query
     $statement->bindParam(':user', $user);
     $statement->bindParam(':meal', $meal);
     $statement->bindParam(':date', $date);
@@ -134,6 +142,9 @@
 
     $statement->closeCursor();	
 
+    //Delete any Cookies we created for error messages:
+  if (isset($_COOKIE['calories_message'])) setcookie("calories_message", "", time()-3600);
+  if (isset($_COOKIE['sugar_message'])) setcookie("sugar_message", "", time()-3600);
 }
 
 if (isset( $_POST['form-submit'] )){
@@ -167,8 +178,18 @@ if (isset( $_POST['form-submit'] )){
       <label for="eat-calories">Calories: </label>
       <input type="text" class="calorie-input" id="eat-calories" name="eat-calories" required><br>
 
+      <!--Throw error message from cookie if the error message is set-->
+      <span class="msg" style="color:red">
+        <?php if (isset($_COOKIE['calories_message'])) echo $_COOKIE['calories_message'] . '<br/>';?>
+      </span>
+
       <label for="eat-sugar">Sugar: </label>
       <input type="text" class="sugar-input" id="eat-sugar" name="eat-sugar" required><br>
+
+      <!--Throw error message from cookie if the error message is set-->
+      <span class="msg" style="color:red">
+        <?php if (isset($_COOKIE['sugar_message'])) echo $_COOKIE['sugar_message'] . '<br/>';?>
+      </span>
 
       <label for="eat-comments">Comments: </label> </br>
       <textarea name="eat-comments" id="eat-comments" rows="4" cols="50" placeholder="What did you eat?" required></textarea>

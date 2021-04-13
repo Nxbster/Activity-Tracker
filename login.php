@@ -8,22 +8,24 @@
   
   <title>Activity Tracker Login</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
+  <link rel="stylesheet" type="text/css" href="./styles/loginstylesheet.css" />
 </head>
 
 <?php session_start(); require('connect-db.php');?>
 
-  <div class="container">
-    <h1>Welcome Back to Activity Tracker!</h1>
+<body>
+  <div class="login-chunk">
+    <h1>Welcome Back to Activity Tracker!</h1><br/>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
       Name: <input type="text" name="username" class="form-control" autofocus required /> <br/>
       Password: <input type="password" name="pwd" class="form-control" required /> <br/>
       <input type="submit" value="Sign in" class="btn btn-light" />   
-    </form>
+    </form><br/><hr><br/>
+    <p style="text-align:center; color:grey">Dont have an Account? <br/>  Please Sign In with your desired name and password</p>
   </div>
 
 <?php 
-  
+  //Function to validate user and log them in
   $password_warning = NULL;
   function login_and_authenticate(){
     //Read
@@ -39,9 +41,11 @@
       $statement->execute();
       $output = $statement->fetchAll();
 
+      //checks if user exists in database
       if (count($output) > 0){
         foreach ($output as $row){
           echo $row['User'] . ' . ' . $row['Password'];
+          //Validate that Password and Username are correct
           if ($_POST['username'] == $row['User'] && $_POST['pwd'] == $row['Password']){
             $_SESSION['user'] = $_POST['username'];
             //Read
@@ -53,6 +57,7 @@
           }
         }
       }
+      //If user doesn't exist in the database, create a new one
       else {
         $query = "INSERT INTO Activity_User (User, Password) VALUES (:user, :password);";
         $statement = $db->prepare($query); //Compile string query into executable version
@@ -72,3 +77,5 @@
   
   login_and_authenticate();
 ?>
+
+</body>

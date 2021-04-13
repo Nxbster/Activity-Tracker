@@ -27,6 +27,7 @@
 
 <body onload="focusActivity()">
   <?php session_start(); ?>
+  <!--In order to keep people who haven't logged in out-->
   <?php if (isset($_SESSION['user']))
   {
   ?>  
@@ -34,7 +35,7 @@
   <?php include('activity_log_header.php') ?>
 
 <?php 
-
+  //Function that Queries the database and returns 5 most recent activities
   function query_database(){
     global $db;
     $query = "SELECT * FROM Activity_Log WHERE User=:user ORDER BY Date DESC";
@@ -52,6 +53,7 @@
       //Shows the 5 most recent activites
       if ($count < 5)
       {
+        //Puts each entry into the table format for display
         ?><tr>
             <td><?php echo $row['Date']; ?></td>
             <td><?php echo $row['Time']; ?>pm</td>
@@ -70,9 +72,9 @@
   <h2 class="page-subheading"> Hello <?php echo $_SESSION['user'] ?>! &nbsp; What have you done today? </h2></br>
   
 <?php
+  //Function that takes inputted activity data and inserts it into the Activity_Log table
   function insertData() {   
 	global $db;
-    $reminder_message = NULL;
     $user = htmlspecialchars($_SESSION['user']);
     //Input validation, ensure user cannot input null fields into database 
     //Also used htmlspecialchars to prevent against sql injection attacks
@@ -80,35 +82,34 @@
       $activity = htmlspecialchars($_POST['activity']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
       return;
     }
     if ($_POST['activity-date'] != NULL){
       $date = htmlspecialchars($_POST['activity-date']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
       return;
     }
     if ($_POST['activity-time'] != NULL){
       $time = htmlspecialchars($_POST['activity-time']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
       return;
     }
-    if ($_POST['activity-time-spent'] != NULL) {
+    if ($_POST['activity-time-spent'] != NULL && is_numeric($_POST['activity-time-spent'])) {
       $time_spent = htmlspecialchars($_POST['activity-time-spent']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      //Throws user a message if they haven't inputted Time Spent as a string
+      setcookie('time_spent_message', "Please fill out Time Spent with an integer!", time()+3600);
       return;
     }
-    if ($_POST['activity-distance'] != NULL) {
+    if ($_POST['activity-distance'] != NULL && is_numeric($_POST['activity-distance'])) {
       $distance = htmlspecialchars($_POST['activity-distance']);
     }
     else {
-      $reminder_message = "Please fill out all fields!";
+      //Throws user a message if they haven't inputted Distance as a string
+      setcookie('distance_message', "Please fill out Distance with an integer!", time()+3600);
       return;
     }
     //User does not have to input a comment
@@ -140,10 +141,16 @@
 
     //clear $_POST array
     $_POST = array();  
+
+  //Delete any Cookies we created for error messages:
+  if (isset($_COOKIE['time_spent_message'])) setcookie("time_spent_message", "", time()-3600);
+  if (isset($_COOKIE['distance_message'])) setcookie("distance_message", "", time()-3600);
 }
 
 if (isset( $_POST['form-submit'] )){
+  //Run function when Submit button is pressed
   insertData();
+  //Redirect user -> Solves bugs with $_POST array keeping data through refresh
   header("Location: activity_redirect.php");
 }
 
@@ -168,8 +175,18 @@ if (isset( $_POST['form-submit'] )){
     <label for="activity-time-spent">Time Spent: &nbsp;&nbsp;</label>
     <input type="text" id="activity-time-spent" name="activity-time-spent" required><br>
 
+    <!--Throw error message from cookie if the error message is set-->
+    <span class="msg" style="color:red">
+      <?php if (isset($_COOKIE['time_spent_message'])) echo $_COOKIE['time_spent_message'] . '<br/>';?>
+    </span>
+
     <label for="activity-distance">Distance: &nbsp;&nbsp;</label>
     <input type="text" class="distance-input" id="activity-distance" name="activity-distance" required><br>
+    
+    <!--Throw error message from cookie if the error message is set-->
+    <span class="msg" style="color:red">
+      <?php if (isset($_COOKIE['distance_message'])) echo $_COOKIE['distance_message'] . '<br/>';?>
+    </span>
 
     <label for="activity-comments">Comments: </label> </br>
     <textarea name="activity-comments" id="activity-comments" rows="4" cols="50" placeholder="How was your activity?"></textarea>
@@ -177,9 +194,6 @@ if (isset( $_POST['form-submit'] )){
     <input type="submit" value="Submit" name="form-submit" class="btn btn-secondary" />
   </form> 
 
-  <span class="msg" style="color:red">
-    <?php if (isset($reminder_message)) echo $reminder_message;?>
-  </span>
 </div>
   
   </br></br>

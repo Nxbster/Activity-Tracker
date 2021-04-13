@@ -92,15 +92,17 @@
     <div class = "card" name = "bio">
       <form action="" method="get">
       <?php //Read
-      echo "Log in time: " . $_GET['time'] . "<br/>";
+      if (isset($_GET['time'])) echo "Log in time: " . $_GET['time'] . "<br/>";
       ?>
         <label for="height">Height(inches): </label>
         <input type="text" value= "<?php echo $db_Height;?>" id="height" name="height"><br>
+        <!-- If user hasn't given us a height, throw message to user-->
         <span class="msg" style="color:red">
           <?php if (empty($_GET['height']) && $db_Height == NULL) echo "Please fill out all fields!<br/>"?>
         </span>
         <label for="weight">Weight(lbs): </label>
         <input type="text" value = '<?php echo $db_Weight;?>' id="weight" name="weight"><br>
+        <!-- If user hasn't given us a weight, throw message to user-->
         <span class="msg" style="color:red">
           <?php if (empty($_GET['weight']) && $db_Weight == NULL) echo "Please fill out all fields! <br/>"?>
         </span>
@@ -108,6 +110,7 @@
           <label for="quote">Quote: </label>
           <input type="text" value= "<?php echo $db_Quote;?>" id="quote" name="quote"><br>
         </div>
+        <!-- If user hasn't given us a quote, throw message to user-->
         <span class="msg" style="color:red">
           <?php if (empty($_GET['quote']) && $db_Quote == NULL) echo "Please fill out all fields!"?>
         </span>

@@ -17,6 +17,7 @@
 <?php session_start(); ?>
 
 <?php
+//Checks if there are any objects in the session
 if (count($_SESSION) > 0)
 {
   foreach ($_SESSION as $k => $v)
@@ -25,11 +26,10 @@ if (count($_SESSION) > 0)
   }
   session_destroy();    // completely remove the instance (server)
 
-  echo "sessionID = " . session_id() . "<br/>";
-  setcookie("PHPSESSID", "", time()-3600, "/");
+  setcookie("PHPSESSID", "", time()-3600, "/");  //Delete PHPSESSID cookie
 }
 
-header("Location: login.php");
+header("Location: login.php"); //Redirect back to login page
 ?>
 
 </body>
