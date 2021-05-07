@@ -227,8 +227,6 @@ if (isset( $_POST['form-submit'] )){
 
       <?php include('footer.html') ?>
 
-      <script src="./js/eat_log.js"></script>
-
 <?php
 }
 else
@@ -236,4 +234,27 @@ else
   header('Location: login.php');
 }
 ?>
+
+<script>
+  var welcomeUser = (function(){
+    document.addEventListener("load", alert("Welcome back!"));
+  }());
+
+  //Functions to show/hide table on button press
+  //Code with help from: https://www.roseindia.net/javascript/javascriptexamples/javascript-show-hide-table.shtml
+  function showTable(){
+      document.getElementById('eat-table').style.visibility = "visible";
+      console.log("table shown!");
+  }
+  function hideTable(){
+      document.getElementById('eat-table').style.visibility = "hidden";
+      console.log("table hidden!");
+  }
+
+  //Event Listeners to trigger functions
+  document.getElementById("show-button").addEventListener("click", showTable);
+  document.getElementById("hide-button").addEventListener("click", hideTable);
+</script>
+
+
 </body>

@@ -1,13 +1,13 @@
 <?php
-$hostname = 'usersrv01.cs.virginia.edu';
-//$hostname = 'localhost:3306';
+//$hostname = 'usersrv01.cs.virginia.edu';
+$hostname = 'localhost:3306';
 //$hostname = '128.143.69.130';
 
-$dbname = 'bnp3nj';
-//$dbname = 'BenP';
+//$dbname = 'bnp3nj';
+$dbname = 'BenP';
 
-$username = 'bnp3nj';
-//$username = 'BenP';
+//$username = 'bnp3nj';
+$username = 'BenP';
 $password = '@Sarah524';
 
 $dsn = "mysql:host=$hostname;dbname=$dbname";

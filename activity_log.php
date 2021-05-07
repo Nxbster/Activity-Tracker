@@ -25,7 +25,7 @@
 
 </head>
 
-<body onload="focusActivity()">
+<body>
   <?php session_start(); ?>
   <!--In order to keep people who haven't logged in out-->
   <?php if (isset($_SESSION['user']))
@@ -222,8 +222,6 @@ if (isset( $_POST['form-submit'] )){
       <?php include('footer.html') ?>
 
     </div>
-
-    <script src="./js/activity_log.js"></script>
   
 <?php
 }
@@ -232,5 +230,24 @@ else
   header('Location: login.php');
 }
 ?>    
+
+<script>
+  var welcomeUser = (function(){
+    document.addEventListener("load", alert("Welcome back!"));
+  }());
+
+  //Functions to show/hide table on button press
+  //Code with help from: https://www.roseindia.net/javascript/javascriptexamples/javascript-show-hide-table.shtml
+  function showTable(){
+    document.getElementById('workout-table').style.visibility = "visible";
+  }
+  function hideTable(){
+    document.getElementById('workout-table').style.visibility = "hidden";
+  }
+
+  //Event Listeners to trigger functions
+  document.getElementById("show-button").addEventListener("click", showTable);
+  document.getElementById("hide-button").addEventListener("click", hideTable);
+</script>
 
 </body>
